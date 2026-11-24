@@ -1,14 +1,18 @@
-const userModel = require('../models/users');
-const bcrypt = require("bcrypt");
+/* eslint-disable no-console */
+/* eslint-disable consistent-return */
+/* eslint-disable no-throw-literal */
+// eslint-disable-next-line import/no-extraneous-dependencies
+const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
+const userModel = require('../models/users');
 
 const secretKey = process.env.JWT_SECRET_KEY;
 const tokenDuration = process.env.JWT_EXPIRES_IN;   
 const tokenAlgorithm = process.env.JWT_ALGORITHM;
 
-module.exports.login = function (req, res, next) {
-    const accountNo = req.body.accountNo;
-    const password = req.body.password;
+module.exports.login = function (req, res) {
+    const {accountNo} = req.body;
+    const {password} = req.body;
 
     if (!accountNo || !password) {
         return res.status(400).json({ message: 'Account Number and password are required' });

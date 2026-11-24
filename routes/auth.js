@@ -1,5 +1,6 @@
 const express = require('express');
 const usersController = require('../controllers/usersController');
+
 const router = express.Router();
 
 // The route /login uses the following middleware functions:
